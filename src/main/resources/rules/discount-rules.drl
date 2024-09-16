@@ -1,0 +1,12 @@
+import com.example.drools_demo.model.OrderRequest;
+global com.example.drools_demo.model.OrderDiscount orderDiscount;
+
+dialect "mvel"
+
+rule "Age Based Discount"
+    when
+        OrderRequest(age < 20 || age > 50)
+    then
+        System.out.println("==========Adding 10% discount for Kids/ senior customer=============");
+        orderDiscount.setDiscount(orderDiscount.getDiscount() + 10);
+end
